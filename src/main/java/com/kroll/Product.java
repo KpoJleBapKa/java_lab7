@@ -40,7 +40,7 @@ public class Product implements Comparable<Product> {
 
     @Override
     public String toString() {
-        return "Product{id=" + id + ", name='" + name + "', price=" + price + ", stock=" + stock + '}';
+        return "ID продукту: " + id + ", назва: " + name + ", ціна: $" + price + ", наявність: " + stock;
     }
 }
 

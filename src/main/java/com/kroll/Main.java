@@ -1,5 +1,7 @@
 package com.kroll;
 
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Scanner;
 
 public class Main {
@@ -7,7 +9,6 @@ public class Main {
         ECommercePlatform platform = new ECommercePlatform();
         Scanner scanner = new Scanner(System.in);
 
-        // Основний цикл програми
         while (true) {
             System.out.println("1. Додати користувача");
             System.out.println("2. Додати товар");
@@ -52,27 +53,32 @@ public class Main {
                     User user = platform.getUserById(userId);
                     if (user != null) {
                         System.out.println("Додавання товарів у кошик користувача: " + user.getUsername());
-                        System.out.print("Введіть ID товару: ");
-                        int productId = scanner.nextInt();
-                        scanner.nextLine();
-                        System.out.print("Введіть кількість товару: ");
-                        int quantity = scanner.nextInt();
-                        scanner.nextLine();
+                        platform.displayAvailableProducts();
+                        Map<Integer, Integer> productQuantities = new HashMap<>();
 
-                        Product product = platform.getProductById(productId);
-                        if (product != null) {
-                            user.addToCart(product, quantity);
-                            System.out.println("Товар доданий у кошик користувача!");
-                        } else {
-                            System.out.println("Товар не знайдений!");
+                        while (true) {
+                            System.out.print("Введіть ID товару (або 0 для завершення): ");
+                            int productId = scanner.nextInt();
+                            if (productId == 0) {
+                                break;
+                            }
+                            scanner.nextLine();
+                            System.out.print("Введіть кількість товару: ");
+                            int quantity = scanner.nextInt();
+                            scanner.nextLine();
+
+                            productQuantities.put(productId, quantity);
                         }
+
+                        platform.createOrder(userId, productQuantities);
+                        System.out.println("Замовлення створено успішно!");
                     } else {
                         System.out.println("Користувач не знайдений!");
                     }
                     break;
 
                 case 4:
-                    platform.listAvailableProducts();
+                    platform.displayAvailableProducts();
                     break;
 
                 case 5:

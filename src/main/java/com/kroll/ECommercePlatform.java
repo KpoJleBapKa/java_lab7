@@ -1,6 +1,8 @@
 package com.kroll;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 public class ECommercePlatform {
@@ -37,58 +39,59 @@ public class ECommercePlatform {
         products.put(product.getId(), product);
     }
 
-    public void createOrder(Integer userId, Map<Product, Integer> orderDetails) {
+    public void createOrder(Integer userId, Map<Integer, Integer> productQuantities) {
         User user = users.get(userId);
         if (user == null) {
-            System.out.println("User not found");
+            System.out.println("Користувача не знайдено");
             return;
         }
 
-        for (Map.Entry<Product, Integer> entry : orderDetails.entrySet()) {
-            Product product = entry.getKey();
+        Order order = new Order(generateOrderId(), userId);
+        for (Map.Entry<Integer, Integer> entry : productQuantities.entrySet()) {
+            int productId = entry.getKey();
             int quantity = entry.getValue();
 
-            if (product.getStock() < quantity) {
-                System.out.println("Not enough stock for product: " + product.getName());
+            Product product = products.get(productId);
+            if (product == null) {
+                System.out.println("Товар не знайдений");
                 return;
             }
-        }
 
-        Order order = new Order(generateOrderId(), userId);
-        order.getOrderDetails().putAll(orderDetails);
-        order.calculateTotalPrice();
+            if (product.getStock() < quantity) {
+                System.out.println("Недостатньо товару на складі: " + product.getName());
+                return;
+            }
 
-        for (Map.Entry<Product, Integer> entry : orderDetails.entrySet()) {
-            Product product = entry.getKey();
-            int quantity = entry.getValue();
+            order.getOrderDetails().put(product, quantity);
             product.setStock(product.getStock() - quantity);
         }
+        order.calculateTotalPrice();
 
         orders.put(order.getId(), order);
         user.getCart().clear();
 
-        System.out.println("Order created successfully. Order ID: " + order.getId());
+        System.out.println("Замовлення створено успішно. ID замовлення: " + order.getId());
     }
 
-    public void listAvailableProducts() {
-        System.out.println("Available Products:");
+    public void displayAvailableProducts() {
+        System.out.println("Доступні товари:");
         for (Product product : products.values()) {
             System.out.println(product);
         }
     }
 
     public void listUsers() {
-        System.out.println("Users:");
+        System.out.println("Користувачі:");
         for (User user : users.values()) {
-            System.out.println("User ID: " + user.getId() + ", Username: " + user.getUsername());
+            System.out.println("ID користувача: " + user.getId() + ", Ім'я користувача: " + user.getUsername());
         }
     }
 
     public void listOrders() {
-        System.out.println("Orders:");
+        System.out.println("Замовлення:");
         for (Order order : orders.values()) {
-            System.out.println("Order ID: " + order.getId() + ", User ID: " + order.getUserId() +
-                    ", Total Price: $" + order.getTotalPrice());
+            System.out.println("ID замовлення: " + order.getId() + ", ID користувача: " + order.getUserId() +
+                    ", Загальна вартість: $" + order.getTotalPrice());
         }
     }
 
@@ -97,7 +100,7 @@ public class ECommercePlatform {
         if (product != null) {
             product.setStock(newStock);
         } else {
-            System.out.println("Product not found");
+            System.out.println("Товар не знайдено");
         }
     }
 
