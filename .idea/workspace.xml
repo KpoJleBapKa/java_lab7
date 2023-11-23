@@ -4,11 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="48bcd0a9-c14c-48ae-8d45-76446d660003" name="Changes" comment="v0.2 pre-release, adding main func">
+    <list default="true" id="48bcd0a9-c14c-48ae-8d45-76446d660003" name="Changes" comment="v1.0 release, repairing func">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/kroll/ECommercePlatform.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/kroll/ECommercePlatform.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/kroll/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/kroll/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/kroll/Product.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/kroll/Product.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/com/kroll/AppTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/kroll/ProductTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -63,11 +63,20 @@
       <option name="project" value="LOCAL" />
       <updated>1700680524395</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="v1.0 release, repairing func">
+      <option name="closed" value="true" />
+      <created>1700694850322</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1700694850322</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="v0.2 pre-release, adding main func" />
-    <option name="LAST_COMMIT_MESSAGE" value="v0.2 pre-release, adding main func" />
+    <MESSAGE value="v1.0 release, repairing func" />
+    <option name="LAST_COMMIT_MESSAGE" value="v1.0 release, repairing func" />
   </component>
 </project>
